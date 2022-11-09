@@ -1,0 +1,6 @@
+amqtt
+asyncio
+mysql-connector-python
+cryptography
+elasticsearch
+pandas
