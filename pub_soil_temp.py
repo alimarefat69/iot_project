@@ -51,7 +51,7 @@ async def test_pub():
 						print(message_error)
 						MQTT_MSG_ERROR = json.dumps(message_error).encode('utf-8')
 						await client.publish("ali/test", MQTT_MSG_ERROR,qos=QOS_1)
-			os.remove('/home/pi/iotproject/error_sensor.csv')
+				os.remove('/home/pi/iotproject/error_sensor.csv')
 			await client.publish("ali/test", MQTT_MSG,qos=QOS_1)
 			print(MQTT_MSG)
 			await client.disconnect()
