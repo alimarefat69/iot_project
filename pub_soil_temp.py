@@ -23,8 +23,8 @@ async def test_pub():
 			typechecker = temp.replace('.','',1).isdigit()
 			if not typechecker:
 				continue
-			temp = int(temp)
-			humid = int(humid)
+			temp = float(temp)
+			humid = float(humid)
 			datetimenow = str(datetime.now())
 			header = "datetime, Temperature, Humidity"
 			if not os.path.exists('/home/pi/pahohbmqtt/log_sensor.csv'):
