@@ -57,10 +57,10 @@ async def test_pub():
 			await client.disconnect()
 		except ConnectException:
 			print('running exception')
-			if not os.path.exists('/home/pi/pahohbmqtt/error_sensor.csv'):
-				with open('/home/pi/pahohbmqtt/error_sensor.csv','w+') as f:
+			if not os.path.exists('/home/pi/iotproject/error_sensor.csv'):
+				with open('/home/pi/iotproject/error_sensor.csv','w+') as f:
 					f.write(header+'\n')
-			with open('/home/pi/pahohbmqtt/error_sensor.csv','a+') as f:	
+			with open('/home/pi/iotproject/error_sensor.csv','a+') as f:	
 				f.write(f'{datetimenow}, {temp},{humid}\n')
 			print('Temperature is ', temp)
 			print('Humidity is', humid)
