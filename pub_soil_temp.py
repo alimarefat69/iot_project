@@ -27,18 +27,18 @@ async def test_pub():
 			humid = float(humid)
 			datetimenow = str(datetime.now())
 			header = "datetime, Temperature, Humidity"
-			if not os.path.exists('/home/pi/pahohbmqtt/log_sensor.csv'):
-				with open('/home/pi/pahohbmqtt/log_sensor.csv','w+') as f:
+			if not os.path.exists('/home/pi/iotproject/log_sensor.csv'):
+				with open('/home/pi/iotproject/log_sensor.csv','w+') as f:
 					f.write(header + '\n')
-			with open('/home/pi/pahohbmqtt/log_sensor.csv','a+') as f:	
+			with open('/home/pi/iotproject/log_sensor.csv','a+') as f:	
 				f.write(f'{datetimenow},{temp},{humid}\n')
 			print(f"datimetime: {datetimenow}, Temperature: {temp}, Humidity: {humid}")
 			print('Connected successfully')
 			message = {'datetime':datetimenow, 'temperature': temp, 'humidity':humid}
 			MQTT_MSG = json.dumps(message).encode('utf-8')
 			await client.connect('mqtt://radonmaster.eastus.cloudapp.azure.com:1883')
-			if os.path.exists('/home/pi/pahohbmqtt/error_sensor.csv'):
-				with open('/home/pi/pahohbmqtt/error_sensor.csv', 'r') as f:
+			if os.path.exists('/home/pi/iotproject/error_sensor.csv'):
+				with open('/home/pi/iotproject/error_sensor.csv', 'r') as f:
 					lines = f.readlines()
 					for line in lines[1:]:
 						dataline = line.strip().split(',')
@@ -51,7 +51,7 @@ async def test_pub():
 						print(message_error)
 						MQTT_MSG_ERROR = json.dumps(message_error).encode('utf-8')
 						await client.publish("ali/test", MQTT_MSG_ERROR,qos=QOS_1)
-			os.remove('/home/pi/pahohbmqtt/error_sensor.csv')
+			os.remove('/home/pi/iotproject/error_sensor.csv')
 			await client.publish("ali/test", MQTT_MSG,qos=QOS_1)
 			print(MQTT_MSG)
 			await client.disconnect()
