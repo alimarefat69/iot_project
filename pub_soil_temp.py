@@ -19,6 +19,8 @@ async def test_pub():
 			print('running try block')
 			ser = serial.Serial("/dev/ttyACM0",115200)
 			temp = ser.readline().decode('Ascii').strip()
+			if not temp.isalnum() and ',' not in temp:
+				continue
 			temp, humid = temp.split(',')
 			typechecker = temp.replace('.','',1).isdigit()
 			if not typechecker:
